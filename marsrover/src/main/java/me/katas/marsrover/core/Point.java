@@ -1,5 +1,7 @@
 package me.katas.marsrover.core;
 
+import static java.lang.Math.*;
+
 public class Point {
 
     private int x;
@@ -17,7 +19,15 @@ public class Point {
     public int y() {
         return y;
     }
-    
+   
+    public Point ceil(Point max) {
+        return new Point(min(x, max.x), min(y, max.y));
+    }
+   
+    public Point floor(Point min) {
+        return new Point(max(x, min.x), max(y, min.y));
+    }
+   
     @Override
     public boolean equals(Object other) {
         try {

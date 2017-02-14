@@ -6,10 +6,12 @@ public class Rover {
 
     private Point position;
     private Orientation orientation;
+    private Plateau plateau;
 
-    public Rover(Point point, Orientation orientation) {
+    public Rover(Point point, Orientation orientation, Plateau plateau) {
         this.position = point;
         this.orientation = orientation;
+        this.plateau = plateau;
     }
 
     public void process(Instruction move) {
@@ -17,7 +19,7 @@ public class Rover {
     }
 
     public void advance() {
-        position = orientation.step(position);
+        position = plateau.place(orientation.step(position));
     }
 
     public void rotateLeft() {

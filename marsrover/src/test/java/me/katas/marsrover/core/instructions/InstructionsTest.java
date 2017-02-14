@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import org.junit.Test;
 
 import me.katas.marsrover.core.Orientation;
+import me.katas.marsrover.core.Plateau;
 import me.katas.marsrover.core.Point;
 import me.katas.marsrover.core.Rover;
 
@@ -34,6 +35,6 @@ public class InstructionsTest {
     }
 
     private Rover newRover() {
-        return new Rover(new Point(0,0), Orientation.NORTH);
+        return new Rover(new Point(0,0), Orientation.NORTH, new Plateau(10,10));
     }
 }

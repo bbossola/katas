@@ -12,7 +12,7 @@ public class SampleTest {
 
     @Test
     public void sampleRoverOne() {
-        Rover rover = new Rover(new Point(1,2), Orientation.NORTH);
+        Rover rover = new Rover(new Point(1,2), Orientation.NORTH, new Plateau(5,5));
         
         rover.process(new Left());
         rover.process(new Move());
@@ -30,7 +30,7 @@ public class SampleTest {
 
     @Test
     public void sampleRoverTwo() {
-        Rover rover = new Rover(new Point(3,3), Orientation.EAST);
+        Rover rover = new Rover(new Point(3,3), Orientation.EAST, new Plateau(5,5));
         
         rover.process(new Move());
         rover.process(new Move());

@@ -8,14 +8,14 @@ public class RoverMovementTest {
 
     @Test
     public void shouldConstructTheRobotConsistently() {
-        Rover rover = new Rover(new Point(1,2), Orientation.SOUTH);
+        Rover rover = newRover(new Point(1,2), Orientation.SOUTH);
         assertEquals(Orientation.SOUTH, rover.orientation());
         assertEquals(new Point(1,2), rover.position());
     }
 
     @Test
     public void shouldRotateRightWorkAsExpected() {
-        Rover rover = new Rover(new Point(0,0), Orientation.NORTH);
+        Rover rover = newRover(new Point(0,0), Orientation.NORTH);
 
         rover.rotateRight();
         assertEquals(Orientation.EAST, rover.orientation());
@@ -32,7 +32,7 @@ public class RoverMovementTest {
 
     @Test
     public void shouldRotateLeftWorkAsExpected() {
-        Rover rover = new Rover(new Point(0,0), Orientation.NORTH);
+        Rover rover = newRover(new Point(0,0), Orientation.NORTH);
 
         rover.rotateLeft();
         assertEquals(Orientation.WEST, rover.orientation());
@@ -49,7 +49,7 @@ public class RoverMovementTest {
 
     @Test
     public void shouldAdvanceFacingNorth() {
-        Rover rover = new Rover(new Point(2,2), Orientation.NORTH);
+        Rover rover = newRover(new Point(2,2), Orientation.NORTH);
 
         rover.advance();
 
@@ -58,7 +58,7 @@ public class RoverMovementTest {
 
     @Test
     public void shouldAdvanceFacingSouth() {
-        Rover rover = new Rover(new Point(2,2), Orientation.SOUTH);
+        Rover rover = newRover(new Point(2,2), Orientation.SOUTH);
 
         rover.advance();
 
@@ -67,7 +67,7 @@ public class RoverMovementTest {
 
     @Test
     public void shouldAdvanceFacingWest() {
-        Rover rover = new Rover(new Point(2,2), Orientation.WEST);
+        Rover rover = newRover(new Point(2,2), Orientation.WEST);
 
         rover.advance();
 
@@ -76,10 +76,14 @@ public class RoverMovementTest {
 
     @Test
     public void shouldAdvanceFacingEast() {
-        Rover rover = new Rover(new Point(2,2), Orientation.EAST);
+        Rover rover = newRover(new Point(2,2), Orientation.EAST);
 
         rover.advance();
 
         assertEquals(new Point(3,2), rover.position());
+    }
+    
+    private Rover newRover(Point position, Orientation orientation) {
+        return new Rover(position, orientation, new Plateau(100,100));
     }
 }
