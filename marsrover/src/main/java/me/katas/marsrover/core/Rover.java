@@ -38,4 +38,8 @@ public class Rover {
         return this.position;
     }
 
+    public Plateau plateau() {
+        return this.plateau;
+    }
+
 }

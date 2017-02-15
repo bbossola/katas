@@ -13,5 +13,20 @@ public class Plateau {
     public Point place(Point where) {
         return where.ceil(this.max).floor(this.min);
     }
+    
+    @Override
+    public boolean equals(Object other) {
+        try {
+            Plateau plato = (Plateau)other;
+            return min.equals(plato.min) && max.equals(plato.max);
+        }
+        catch (Exception any) {
+            return false;
+        }
+    }
 
+    @Override
+    public String toString() {
+        return "Plateau "+max.toString();
+    }
 }
