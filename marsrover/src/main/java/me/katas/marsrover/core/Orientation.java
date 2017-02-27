@@ -25,5 +25,9 @@ public enum Orientation {
     public Point step(Point position) {
         return new Point(position.x()+deltaX, position.y()+deltaY);
     }
+
+    public char toChar() {
+        return toString().charAt(0);
+    }
 }
 

@@ -1,6 +1,6 @@
 package me.katas.marsrover.core;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -8,7 +8,7 @@ import me.katas.marsrover.core.instructions.Left;
 import me.katas.marsrover.core.instructions.Move;
 import me.katas.marsrover.core.instructions.Right;
 
-public class SampleTest {
+public class SampleTestWithCore {
 
     @Test
     public void sampleRoverOne() {

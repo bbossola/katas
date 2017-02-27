@@ -1,6 +1,7 @@
 package me.katas.marsover.cli;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
@@ -10,23 +11,21 @@ public class TestPlateauParser {
 
     @Test
     public void shouldLoadPlateauWithCorrectInputAndReturnTrue() {
-        Program program = new Program();
+        Mission mission = new Mission();
         
-        PlateauParser parser = new PlateauParser(program);
-        boolean res = parser.ingest("5 5");
+        LineParser parser = new PlateauParser();
+        parser.ingest(mission, "5 5");
         
-        assertEquals(new Plateau(5,5), program.plateau());
-        assertTrue(res);
+        assertEquals(new Plateau(5,5), mission.plateau());
     }
 
     @Test
     public void shouldNOTLoadPlateauWithCorrectInputAndReturnFalse() {
-        Program program = new Program();
+        Mission mission = new Mission();
         
-        PlateauParser parser = new PlateauParser(program);
-        boolean res = parser.ingest("5 yadda yadda");
+        LineParser parser = new PlateauParser();
+        parser.ingest(mission, "5 yadda yadda");
         
-        assertNull(program.plateau());
-        assertFalse(res);
+        assertNull(mission.plateau());
     }
 }

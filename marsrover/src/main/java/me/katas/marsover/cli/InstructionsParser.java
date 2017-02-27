@@ -12,7 +12,7 @@ import me.katas.marsrover.core.instructions.Left;
 import me.katas.marsrover.core.instructions.Move;
 import me.katas.marsrover.core.instructions.Right;
 
-public class InstructionsParser {
+public class InstructionsParser implements LineParser {
 
     private static final Map<String, Class<?>> INSTRUCTIONS = new HashMap<>();
     static {
@@ -21,13 +21,8 @@ public class InstructionsParser {
         INSTRUCTIONS.put("R", Right.class);
     }
     
-    private Program program;
-
-    public InstructionsParser(Program program) {
-        this.program = program;
-    }
-
-    public boolean ingest(String line) {
+    @Override
+    public void ingest(Mission mission, String line) {
         try {
             line = line.trim();
 
@@ -37,13 +32,15 @@ public class InstructionsParser {
                 Instruction what = (Instruction)notNull(INSTRUCTIONS.get(key)).newInstance();
                 instructions.add(what);
             }
-            program.load(instructions);
-            return true;
+            mission.load(instructions);
+            mission.execute();
         } catch (Exception ex) {
             System.err.println("Invalid instructions input: '"+line+"'");
-            return false;
         }
     }
 
-
+    @Override
+    public LineParser next() {
+        return LineParser.ROVER;
+    }
 }

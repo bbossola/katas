@@ -42,4 +42,16 @@ public class Rover {
         return this.plateau;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        try {
+            Rover other = (Rover)o;
+            return other.orientation == this.orientation &&
+                   other.position.equals(this.position) &&
+                   other.plateau.equals(this.plateau);
+        }
+        catch (Exception any) {
+            return false;
+        }
+    }
 }

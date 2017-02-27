@@ -1,10 +1,8 @@
 package me.katas.marsover.cli;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -22,38 +20,35 @@ import me.katas.marsrover.core.instructions.Right;
 
 public class TestIInstructionsParser {
 
-    private Program program;
+    private Mission mission;
 
     @Before
     public void prepare() {
-        program = new Program();
-        program.load(new Plateau(5,5));
-        program.load(new Rover(new Point(0,0), Orientation.NORTH, program.plateau()));
+        mission = new Mission();
+        mission.load(new Plateau(5,5));
+        mission.load(new Rover(new Point(0,0), Orientation.NORTH, mission.plateau()));
     }
 
     @Test
-    public void shouldLoadInstructionsWithCorrectInputAndReturnTrue() {
+    public void shouldLoadInstructionsWithCorrectInput() {
         
-        InstructionsParser parser = new InstructionsParser(program);
-        boolean res = parser.ingest("LMR");
+        InstructionsParser parser = new InstructionsParser();
+        parser.ingest(mission, "LMR");
         
-        List<Instruction> instructions = program.instructions();
+        List<Instruction> instructions = mission.instructions();
         assertNotNull(instructions);
         assertEquals(Left.class, instructions.get(0).getClass());
         assertEquals(Move.class, instructions.get(1).getClass());
         assertEquals(Right.class, instructions.get(2).getClass());
-
-        assertTrue(res);
     }
 
     @Test
     public void shouldNOTLoadPlateauWithCorrectInputAndReturnFalse() {
         
-        InstructionsParser parser = new InstructionsParser(program);
-        boolean res = parser.ingest("LXT");
+        InstructionsParser parser = new InstructionsParser();
+        parser.ingest(mission, "LXT");
         
-        assertNull(program.instructions());
-        assertFalse(res);
+        assertNull(mission.instructions());
     }
     
 }
